@@ -28,6 +28,6 @@ if __name__ == '__main__':
     stream = tweepy.Stream(auth, listener)
     #967302676483657728
     follow_id =  ['967302676483657728']
-    track_tag = ['#HappyBirthdayJustinBieber']
+    track_tag = ['#IndiaOnFastTrack']
     stream.filter(follow = follow_id,track = track_tag)
     #stream.filter(follow = ['967302676483657728']
