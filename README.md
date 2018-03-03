@@ -1,4 +1,11 @@
 # Trend-Up
-Trend-Up is a twitter bot that  copy the text of particular hashtag and tweet it from user account.
+Trend-Up is a twitter bot that Offers user 3 options
+
+1) Retweeting , Following , marking tweet as favourite.
+
+2) Copying Tweet and automatically printing it from your account.
+
+3) Copying Tweet from accounts which you are following and automating printing it from your account
+
 
 Disclaimer : Project created solely for purpose of learning.
