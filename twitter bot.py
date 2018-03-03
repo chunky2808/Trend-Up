@@ -1,6 +1,7 @@
 import tweepy
+import sys
 from time import sleep
-  
+
 consumer_key = ''
 consumer_secret = ''
 access_token = ''
@@ -9,11 +10,16 @@ access_token_secret = ''
 class StdOutListener(tweepy.StreamListener):
     
     def on_status(self, status):
-        print('Tweet text: ' + status.text)
+        print(('Tweet text: ' + status.text).encode('utf-8'))
         api = tweepy.API(auth)
-        api.update_status(status.text)
-        #time.sleep(5)
-
+        try:
+            if status.text != '\n':
+                api.update_status(status.text)
+            else:
+                pass
+        except tweepy.TweepError as e:
+            print(e.reason)
+        sleep(5)     
         
     def on_error(self, status_code):
         print('Got an error with status code: ' + str(status_code))
@@ -29,6 +35,6 @@ if __name__ == '__main__':
     listener = StdOutListener()
     stream = tweepy.Stream(auth, listener)
     #follow_id =  ['967302676483657728']
-    track_tag = ['#IndiaOnFastTrack']
+    track_tag = ['#TripuraElection2018']
     stream.filter(track = track_tag)
     #stream.filter(follow = ['967302676483657728']
