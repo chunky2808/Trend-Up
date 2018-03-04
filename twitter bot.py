@@ -21,7 +21,7 @@ print("Chose option 3) For Retweeting,following,mark tweet as favourite")
 a = input()
 
 
-class StdOutListener(tweepy.StreamListener):
+class option1(tweepy.StreamListener):
     
     def on_status(self, status):
         print(('Tweet text: ' + status.text).encode('utf-8'))#encoding
@@ -44,7 +44,7 @@ class StdOutListener(tweepy.StreamListener):
         return True
 
 
-class StdOutListener2(tweepy.StreamListener):
+class option2(tweepy.StreamListener):
     
     def on_status(self, status):
         print(('Tweet text: ' + status.text).encode('utf-8'))#encoding
@@ -69,7 +69,7 @@ class StdOutListener2(tweepy.StreamListener):
 
 #For Just Copying Tweet and automating printing it from your account.
 if a==1 :
-  listener = StdOutListener()
+  listener = option1()
   stream = tweepy.Stream(auth, listener)
   #follow_id =  ['967302676483657728']
   track_tag = ['#TripuraElection2018']
@@ -79,7 +79,7 @@ if a==1 :
 
 #For Just Copying Tweet from accounts which you are following and automating printing it from your account
 elif a==2 :
-  listener = StdOutListener2()
+  listener = option2()
     stream = tweepy.Stream(auth, listener)
     follow_id =  ['967302676483657728']
     #track_tag = ['#TripuraElection2018']
