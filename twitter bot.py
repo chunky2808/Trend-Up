@@ -17,9 +17,9 @@ api = tweepy.API(auth)
 print("Chose option 1) For Just Copying Tweet and automating printing it from your account.")
 print("Chose option 2) For Just Copying Tweet from accounts which you are following and automating printing it from your account")
 print("Chose option 3) For Retweeting,following,mark tweet as favourite")
+print("Chose option 4) For Replying on all tweets of a particular account")
 
 a = input()
-
 
 class option1(tweepy.StreamListener):
     
@@ -68,6 +68,7 @@ class option2(tweepy.StreamListener):
 
 
 #For Just Copying Tweet and automating printing it from your account.
+
 if a==1 :
   listener = option1()
   stream = tweepy.Stream(auth, listener)
@@ -75,20 +76,24 @@ if a==1 :
   track_tag = ['#TripuraElection2018']
   stream.filter(track = track_tag)
   #stream.filter(follow = ['967302676483657728']  
+
 #For Just Copying Tweet and automating printing it from your account.
 
 #For Just Copying Tweet from accounts which you are following and automating printing it from your account
+
 elif a==2 :
   listener = option2()
-    stream = tweepy.Stream(auth, listener)
-    follow_id =  ['967302676483657728']
-    #track_tag = ['#TripuraElection2018']
-    #stream.filter(track = track_tag)
-    stream.filter(follow = ['967302676483657728'])
+  stream = tweepy.Stream(auth, listener)
+  follow_id =  ['967302676483657728']
+  #track_tag = ['#TripuraElection2018']
+  #stream.filter(track = track_tag)
+  stream.filter(follow = ['967302676483657728'])
+
 #For Just Copying Tweet from accounts which you are following and automating printing it from your account"
 
 #For Retweeting,following,mark tweet as favourite
-else:
+
+elif a==3 :
   for tweet in tweepy.Cursor(api.search, q='#WhySalaryStopped',since='2018-03-02',until='2018-03-04').items():
       try:
          tweet.retweet()
@@ -100,4 +105,30 @@ else:
 
       except StopIteration:
           break
+
 #For Retweeting,following,mark tweet as favourite
+
+#For Replying on all tweets of a particular account
+
+else:
+  for page in tweepy.Cursor(api.user_timeline, id="967302676483657728").pages():
+    for item in page:
+        try:
+                   if not item.retweeted:
+                           item.retweet()
+                           m = "testing" #your message
+                           t = api.update_status(status=m, in_reply_to_status_id=item.id)
+                           print("printing reply...")
+                           #sleep(1)
+        except tweepy.TweepError as e:
+                   print(e.reason)
+                   #sleep(1)
+                   break
+
+        except StopIteration:
+                   break
+        # m = "hi"
+        # t = api.update_status(status=m, in_reply_to_status_id=item.id)
+        # print((item.text).encode('utf-8'))
+
+# For Replying on all tweets of a particular account
