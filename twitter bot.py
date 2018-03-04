@@ -99,6 +99,7 @@ elif a==3 :
          tweet.retweet()
          tweet.favorite()
          tweet.user.follow()
+         sleep(3)
          
       except tweepy.TweepError as e:
           print(e.reason)
@@ -119,10 +120,10 @@ else:
                            message = "testing" #your message
                            t = api.update_status(status=message, in_reply_to_status_id=item.id)
                            print("printing reply...")
-                           #sleep(1)
+                           sleep(3)
         except tweepy.TweepError as e:
                    print(e.reason)
-                   #sleep(1)
+                   sleep(3)
                    break
 
         except StopIteration:
