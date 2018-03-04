@@ -1,5 +1,5 @@
 # Trend-Up
-Trend-Up is a twitter bot that Offers user 3 options
+Trend-Up is a twitter bot that Offers user 4 options
 
 1) Retweeting , Following , marking tweet as favourite.
 
