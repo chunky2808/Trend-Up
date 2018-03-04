@@ -116,8 +116,8 @@ else:
         try:
                    if not item.retweeted:
                            item.retweet()
-                           m = "testing" #your message
-                           t = api.update_status(status=m, in_reply_to_status_id=item.id)
+                           message = "testing" #your message
+                           t = api.update_status(status=message, in_reply_to_status_id=item.id)
                            print("printing reply...")
                            #sleep(1)
         except tweepy.TweepError as e:
