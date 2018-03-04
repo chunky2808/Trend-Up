@@ -21,7 +21,6 @@ print("Chose option 3) For Retweeting,following,mark tweet as favourite")
 a = input()
 
 
-#class for stream listener
 class StdOutListener(tweepy.StreamListener):
     
     def on_status(self, status):
@@ -43,7 +42,30 @@ class StdOutListener(tweepy.StreamListener):
     def on_timeout(self):
         print('Timeout...')
         return True
-#class for stream listener
+
+
+class StdOutListener2(tweepy.StreamListener):
+    
+    def on_status(self, status):
+        print(('Tweet text: ' + status.text).encode('utf-8'))#encoding
+        api = tweepy.API(auth)
+        try:
+            if status.text != '\n':
+                api.update_status(status.text)#update data to twitter account
+            else:
+                pass
+        except tweepy.TweepError as e:
+            print(e.reason)
+        sleep(5)     
+        
+    def on_error(self, status_code):
+        print('Got an error with status code: ' + str(status_code))
+        return True 
+
+    def on_timeout(self):
+        print('Timeout...')
+        return True
+
 
 #For Just Copying Tweet and automating printing it from your account.
 if a==1 :
@@ -57,7 +79,7 @@ if a==1 :
 
 #For Just Copying Tweet from accounts which you are following and automating printing it from your account
 elif a==2 :
-  listener = StdOutListener()
+  listener = StdOutListener2()
     stream = tweepy.Stream(auth, listener)
     follow_id =  ['967302676483657728']
     #track_tag = ['#TripuraElection2018']
