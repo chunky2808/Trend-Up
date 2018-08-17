@@ -11,4 +11,6 @@ Trend-Up is a twitter bot that Offers user 4 options
 
 To run bot,first get Credentials from https://developer.twitter.com/ .
 
+Twitter Bot : https://twitter.com/test280896
+
 Disclaimer : Project created solely for purpose of learning.
